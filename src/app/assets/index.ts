@@ -1,5 +1,4 @@
-import StarsBackground from './images/background-stars.svg';
-import Sun from './sun.png';
+import Sun from './images/sun.png';
 
 import Earth from './images/planet-earth.svg';
 import Jupiter from './images/planet-jupiter.svg';
@@ -29,7 +28,6 @@ import UranGeo from './images/planet-uranus-geology.png';
 import VenusGeo from './images/planet-venus-geology.png';
 
 export const Images = {
-    StarsBackground,
     Sun,
     Earth,
     EarthGeo,

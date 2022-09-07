@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { Navbar } from './components/Navbar/Navbar';
-import { PlanetInfoScreen } from './components/PlanetInfoScreen/PlanetInfoScreen';
+import { PlanetScreen } from './components/PlanetScreen/PlanetScreen';
 import { Wrapper } from './components/Wrapper/Wrapper';
 import { theme } from './styles/AppTheme';
 import { GlobalStyle } from './styles/globalStyles';
@@ -11,7 +11,7 @@ function App() {
             <GlobalStyle />
             <Wrapper>
                 <Navbar />
-                <PlanetInfoScreen />
+                <PlanetScreen />
             </Wrapper>
         </ThemeProvider>
     );

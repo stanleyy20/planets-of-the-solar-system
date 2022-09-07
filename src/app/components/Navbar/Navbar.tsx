@@ -4,22 +4,30 @@ import { NavLink } from 'react-router-dom';
 
 export const Navbar: React.FunctionComponent = () => {
     const Links = PLANETS.map((planet) => {
-        const getColor = (planetName: string) => {
-            if (planetName === 'Earth') return 'hsl(238,99%,66%)';
-            if (planetName === 'Jupiter') return 'hsl(27,75%,70%)';
-            if (planetName === 'Mars') return 'hsl(12,100%,64%)';
-            if (planetName === 'Mercury') return 'hsl(196,83%,93%)';
-            if (planetName === 'Neptune') return 'hsl(222,95%,63%)';
-            if (planetName === 'Saturn') return 'hsl(17, 73%, 46%)';
-            if (planetName === 'Uranus') return 'hsl(168,82%,67%)';
-            if (planetName === 'Venus') return 'hsl(39,88%,73%)';
-            return 'white';
-        };
-
-        const primaryColor = getColor(planet.name);
+        const primaryColor =
+            planet.name === 'Earth'
+                ? 'hsl(238,99%,66%)'
+                : null || planet.name === 'Jupiter'
+                ? 'hsl(27,75%,70%)'
+                : null || planet.name === 'Mars'
+                ? 'hsl(12,100%,64%)'
+                : null || planet.name === 'Mercury'
+                ? 'hsl(196,83%,93%)'
+                : null || planet.name === 'Neptune'
+                ? 'hsl(222,95%,63%)'
+                : null || planet.name === 'Saturn'
+                ? 'hsl(17, 73%, 46%)'
+                : null || planet.name === 'Uranus'
+                ? 'hsl(168,82%,67%)'
+                : null || planet.name === 'Venus'
+                ? 'hsl(39,88%,73%)'
+                : null;
 
         return (
-            <StyledLink primary_color={primaryColor} to={planet.name} key={planet.name}>
+            <StyledLink
+                primary_color={primaryColor ? primaryColor : 'white'}
+                to={planet.name}
+                key={planet.name}>
                 {planet.name.toUpperCase()}
             </StyledLink>
         );
@@ -38,7 +46,7 @@ export const Navbar: React.FunctionComponent = () => {
 const Header = styled.header`
     width: 100%;
     color: ${({ theme }) => theme.colors.white};
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.grayDark};
     height: 100px;
     display: flex;
 `;

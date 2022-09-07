@@ -2,23 +2,15 @@ import styled from 'styled-components';
 import { LinkIcon } from '../../../assets/images/link-icon';
 import { PlanetInfo } from '../../../types/planetInfo';
 import { Info } from './Info/Info';
-import { Tabs } from './Tabs/Tabs';
 
 type DescriptionProps = {
     planet: PlanetInfo;
-    setGeo: React.Dispatch<React.SetStateAction<boolean>>;
-    setInt: React.Dispatch<React.SetStateAction<boolean>>;
+
     geo: boolean;
     int: boolean;
 };
 
-export const Description: React.FunctionComponent<DescriptionProps> = ({
-    planet,
-    geo,
-    int,
-    setGeo,
-    setInt,
-}) => {
+export const Description: React.FunctionComponent<DescriptionProps> = ({ planet, geo, int }) => {
     return (
         <Information>
             <Title>{planet.name}</Title>
@@ -29,24 +21,39 @@ export const Description: React.FunctionComponent<DescriptionProps> = ({
                     Wikipedia {LinkIcon}
                 </WikiLink>
             </Text>
-
-            <Tabs setInit={setInt} setGeo={setGeo} planet={planet} />
         </Information>
     );
 };
-
-const Title = styled.h2`
-    color: white;
-    font-family: ${({ theme }) => theme.fonts.secondary};
-    font-size: 80px;
-`;
 
 const Information = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 30px;
-    width: 30%;
+    width: 100%;
+    padding-top: 35px;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        width: 100%;
+        align-items: flex-start;
+        padding: 10px 20px;
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+`;
+
+const Title = styled.h2`
+    color: white;
+    font-family: ${({ theme }) => theme.fonts.secondary};
+    font-size: 45px;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        font-size: 55px;
+    }
 `;
 
 const Text = styled.p`

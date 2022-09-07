@@ -53,6 +53,7 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({ planet, setGeo, setIn
         <Container>
             {ButtonsData.map((button) => (
                 <Tab
+                    key={button.id}
                     color={planet.color}
                     active={button.active ? activeButton : false}
                     onClick={() => handleOnClick(button)}>
@@ -65,10 +66,23 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({ planet, setGeo, setIn
 };
 
 const Container = styled.div`
-    width: 100%;
+    width: 120%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.grayDark};
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        flex-direction: column;
+        border-bottom: none;
+        grid-area: 2 / 2 / 3 / 3;
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        grid-area: 2 / 2 / 3 / 3;
+    }
 `;
 
 type TabProps = {
@@ -77,31 +91,73 @@ type TabProps = {
 };
 
 const Tab = styled.button<TabProps>`
-    background-color: ${({ active }) => (active ? ({ color }) => color : 'transparent')};
-    width: 100%;
+    background-color: transparent;
+    position: relative;
+    width: 30%;
+    flex-direction: row;
     outline: none;
-    border: 1px solid ${({ theme }) => theme.colors.grayDark};
-    color: ${({ theme }) => theme.colors.white};
+    border: none;
+    color: ${({ theme }) => theme.colors.grayLight};
     padding: 15px 0;
     cursor: pointer;
     font-weight: 700;
-    font-size: 17px;
     letter-spacing: 1px;
     transition: background-color linear 0.3s;
     display: flex;
     gap: 30px;
-    padding-left: 30px;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 
-    &:hover {
-        background-color: ${({ theme }) => theme.colors.grayDark};
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        height: 6px;
+        width: 0;
+        box-shadow: inset 1px 72px 0px -30px ${({ color }) => color};
+        transition: width 0.3s;
     }
 
-    &:focus {
-        background-color: ${({ color }) => color};
+    &.active::after {
+        width: 100%;
+    }
+
+    &:focus::after {
+        width: 100%;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        background-color: ${({ active }) => (active ? ({ color }) => color : 'transparent')};
+        width: 100%;
+        font-size: 12px;
+        border: 1px solid ${({ theme }) => theme.colors.grayDark};
+        padding-left: 30px;
+        justify-content: left;
+        color: ${({ theme }) => theme.colors.white};
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.grayDark};
+        }
+
+        &:focus {
+            background-color: ${({ color }) => color};
+        }
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        font-size: 17px;
     }
 `;
 
 const Number = styled.span`
     color: ${({ theme }) => theme.colors.grayDark};
     font-weight: 700;
+    display: none;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        display: block;
+    }
 `;

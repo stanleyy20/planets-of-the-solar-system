@@ -24,4 +24,14 @@ export const Info: React.FunctionComponent<InfoProps> = ({ planet, geo, int }) =
 
 const Text = styled.p`
     color: ${({ theme }) => theme.colors.white};
+    text-align: center;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        text-align: left;
+        font-size: 14px;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        font-size: 16px;
+    }
 `;

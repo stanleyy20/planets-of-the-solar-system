@@ -13,8 +13,9 @@ export const Wrapper: React.FunctionComponent<WrapperProps> = ({ children }) => 
 };
 
 const Container = styled.div`
-    width: 100%;
     height: 100%;
+    overflow-x: hidden;
+
     &::after {
         content: '';
         position: absolute;

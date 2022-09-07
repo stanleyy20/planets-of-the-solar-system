@@ -84,6 +84,10 @@ const StyledLink = styled(NavLink)<LinkProps>`
     align-items: center;
     box-shadow: none;
 
+    @media screen and (max-width: ${({ theme }) => theme.media.md}) {
+        display: none;
+    }
+
     &::after {
         content: '';
         position: absolute;

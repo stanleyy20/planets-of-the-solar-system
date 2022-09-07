@@ -38,7 +38,17 @@ const ImgWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 100%;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.sm}) {
+        grid-area: 1 / 1 / 2 / 3;
+        justify-self: center;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        grid-area: 1 / 1 / 3 / 2;
+        justify-self: center;
+    }
 `;
 
 const Span = styled.span<SpanProps>`
@@ -50,16 +60,34 @@ const Span = styled.span<SpanProps>`
         width: 250px;
         height: 400px;
         background-image: url(${({ secondImg }) => secondImg});
-        background-size: 70%;
+        background-size: 30%;
         background-position: center;
         background-repeat: no-repeat;
         transform: translateX(-50%);
-        bottom: -450px;
+        bottom: -300px;
         opacity: ${({ geo }) => (geo ? 1 : 0)};
+
+        @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+            background-size: 50%;
+            bottom: -350px;
+        }
+
+        @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+            background-size: 70%;
+            bottom: -450px;
+        }
     }
 `;
 
 const Img = styled.img<ImgProps>`
-    width: ${({ desktopWidth }) => desktopWidth};
+    width: ${({ mobileWidth }) => mobileWidth};
     transform: scale(${({ active }) => (active ? 1 : 0)});
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        width: ${({ tabletWidth }) => tabletWidth};
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        width: ${({ desktopWidth }) => desktopWidth};
+    }
 `;

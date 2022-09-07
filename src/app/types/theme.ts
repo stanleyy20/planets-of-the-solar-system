@@ -19,4 +19,11 @@ export type theme = {
         primary: string;
         secondary: string;
     };
+    media: {
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        xxl: string;
+    };
 };

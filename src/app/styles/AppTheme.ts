@@ -21,4 +21,12 @@ export const theme: appTheme = {
         primary: `'Spartan', sans-serif`,
         secondary: `'Antonio', sans-serif`,
     },
+
+    media: {
+        sm: '576px',
+        md: '768px',
+        lg: '992px',
+        xl: '1200px',
+        xxl: '1400px',
+    },
 };

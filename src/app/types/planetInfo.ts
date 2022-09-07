@@ -21,8 +21,22 @@ export type PlanetInfo = {
     desktopImgWidth: string;
     tabletImgWidth: string;
     mobileImgWidth: string;
-    rotation: string;
-    revolution: string;
-    radius: string;
-    temperature: string;
+    properties: [
+        {
+            text: string;
+            property: string;
+        },
+        {
+            text: string;
+            property: string;
+        },
+        {
+            text: string;
+            property: string;
+        },
+        {
+            text: string;
+            property: string;
+        }
+    ];
 };

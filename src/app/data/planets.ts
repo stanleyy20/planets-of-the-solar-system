@@ -54,10 +54,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '450px',
         tabletImgWidth: '285px',
         mobileImgWidth: '173px',
-        rotation: '0.99 Days',
-        revolution: '365.26 Days',
-        radius: '6,371 KM',
-        temperature: '16°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '0.99 Days',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '365.26 Days',
+            },
+            {
+                text: 'RADIUS',
+                property: '6,371 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '16°c',
+            },
+        ],
     },
     {
         name: 'Jupiter',
@@ -85,10 +99,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '582px',
         tabletImgWidth: '369px',
         mobileImgWidth: '224px',
-        rotation: '9.93 Hours',
-        revolution: '11.86 Years',
-        radius: '69,911 KM',
-        temperature: '-108°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '9.93 Hours',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '11.86 Years',
+            },
+            {
+                text: 'RADIUS',
+                property: '69,911 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '-108°c',
+            },
+        ],
     },
     {
         name: 'Mars',
@@ -116,10 +144,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '336px',
         tabletImgWidth: '213px',
         mobileImgWidth: '129px',
-        rotation: '1.03 Days',
-        revolution: '1.88 Years',
-        radius: '3,389.5 KM',
-        temperature: '-28°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '1.03 Days',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '1.88 Years',
+            },
+            {
+                text: 'RADIUS',
+                property: '3,389.5 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '-28°c',
+            },
+        ],
     },
     {
         name: 'Mercury',
@@ -147,10 +189,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '290px',
         tabletImgWidth: '184px',
         mobileImgWidth: '111px',
-        rotation: '58.6 Days',
-        revolution: '87.97 Days',
-        radius: '2,439.7 KM',
-        temperature: '430°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '58.6 Days',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '87.97 Days',
+            },
+            {
+                text: 'RADIUS',
+                property: '2,439.7 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '430°c',
+            },
+        ],
     },
     {
         name: 'Neptune',
@@ -178,10 +234,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '450px',
         tabletImgWidth: '285px',
         mobileImgWidth: '173px',
-        rotation: '16.08 Hours',
-        revolution: '164.79 Years',
-        radius: '24,622 KM',
-        temperature: '-201°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '16.08 Hours',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '164.79 Years',
+            },
+            {
+                text: 'RADIUS',
+                property: '24,622 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '-201°c',
+            },
+        ],
     },
     {
         name: 'Saturn',
@@ -209,10 +279,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '666px',
         tabletImgWidth: '422px',
         mobileImgWidth: '256px',
-        rotation: '10.8 Hours',
-        revolution: '29.46 Years',
-        radius: '58,232 KM',
-        temperature: '-138°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '10.8 Hours',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '29.46 Years',
+            },
+            {
+                text: 'RADIUS',
+                property: '58,232 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '-138°c',
+            },
+        ],
     },
     {
         name: 'Uranus',
@@ -240,10 +324,24 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '458px',
         tabletImgWidth: '290px',
         mobileImgWidth: '176px',
-        rotation: '17.2 Hours',
-        revolution: '84 Years',
-        radius: '25,362 KM',
-        temperature: '-195°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '17.2 Hours',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '84 Years',
+            },
+            {
+                text: 'RADIUS',
+                property: '25,362 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '-195°c',
+            },
+        ],
     },
     {
         name: 'Venus',
@@ -271,9 +369,23 @@ export const PLANETS: Array<PlanetInfo> = [
         desktopImgWidth: '400px',
         tabletImgWidth: '253px',
         mobileImgWidth: '154px',
-        rotation: '243 Days',
-        revolution: '224.7 Days',
-        radius: '6,051.8 KM',
-        temperature: '471°c',
+        properties: [
+            {
+                text: 'ROTATION TIME',
+                property: '243 Days',
+            },
+            {
+                text: 'REVOLUTION TIME',
+                property: '224.7 Days',
+            },
+            {
+                text: 'RADIUS',
+                property: '6,051.8 KM',
+            },
+            {
+                text: 'AVERAGE TEMP',
+                property: '471°c',
+            },
+        ],
     },
 ];

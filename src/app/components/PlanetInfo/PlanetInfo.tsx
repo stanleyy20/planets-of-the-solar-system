@@ -31,7 +31,8 @@ export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet })
 
 const Wrapper = styled.section`
     padding-top: 0;
-    width: 85%;
+    width: 100%;
+    padding: 0 30px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -40,9 +41,11 @@ const Wrapper = styled.section`
     overflow-x: hidden;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
-        width: 90%;
+        width: 85%;
         padding-bottom: 20px;
         padding-top: 50px;
+        padding-left: 0;
+        padding-right: 0;
         gap: 50px;
     }
 
@@ -67,7 +70,7 @@ const Body = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: grid;
-        grid-template-columns: 40% 40%;
+
         grid-template-rows: 60% 40%;
         grid-row-gap: 50px;
         justify-content: center;

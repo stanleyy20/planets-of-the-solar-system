@@ -71,6 +71,7 @@ const Container = styled.div`
     flex-direction: row;
     gap: 20px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.grayDark};
+    z-index: 50;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         flex-direction: column;
@@ -104,7 +105,7 @@ const Tab = styled.button<TabProps>`
     transition: background-color linear 0.3s;
     display: flex;
     gap: 30px;
-    font-size: 10px;
+    font-size: 12px;
     justify-content: center;
     align-items: center;
 
@@ -120,7 +121,11 @@ const Tab = styled.button<TabProps>`
         transition: width 0.3s;
     }
 
-    &.active::after {
+    &:focus {
+        color: ${({ theme }) => theme.colors.white};
+    }
+
+    &:active::after {
         width: 100%;
     }
 

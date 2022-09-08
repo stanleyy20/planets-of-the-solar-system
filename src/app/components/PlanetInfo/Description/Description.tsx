@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { LinkIcon } from '../../../assets/images/link-icon';
 import { PlanetInfo } from '../../../types/planetInfo';
-import { Info } from './Info/Info';
 
 type DescriptionProps = {
     planet: PlanetInfo;
@@ -11,10 +10,17 @@ type DescriptionProps = {
 };
 
 export const Description: React.FunctionComponent<DescriptionProps> = ({ planet, geo, int }) => {
+    const content =
+        !geo && !int
+            ? planet.overview.content
+            : geo
+            ? planet.geology.content
+            : planet.structure.content;
+
     return (
         <Information>
             <Title>{planet.name}</Title>
-            <Info planet={planet} geo={geo} int={int} />
+            <TextSecondary>{content}</TextSecondary>
             <Text>
                 Source:{' '}
                 <WikiLink href={planet.overview.source} target='_blank'>
@@ -37,7 +43,6 @@ const Information = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 100%;
         align-items: flex-start;
-        padding: 10px 20px;
         grid-area: 2 / 1 / 3 / 2;
     }
 
@@ -59,6 +64,20 @@ const Title = styled.h2`
 const Text = styled.p`
     color: ${({ theme }) => theme.colors.grayLight};
     font-weight: bold;
+`;
+
+const TextSecondary = styled.p`
+    color: ${({ theme }) => theme.colors.white};
+    text-align: center;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        text-align: left;
+        font-size: 14px;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        font-size: 16px;
+    }
 `;
 
 const WikiLink = styled.a`

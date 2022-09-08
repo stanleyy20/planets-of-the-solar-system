@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { PlanetInfo } from '../../../../types/planetInfo';
+import { PlanetInfo } from '../../../types/planetInfo';
 
 type TabsProps = {
     planet: PlanetInfo;
@@ -77,7 +77,6 @@ const Container = styled.div`
         border-bottom: none;
         grid-area: 2 / 2 / 3 / 3;
         width: 100%;
-        padding: 10px 20px;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {

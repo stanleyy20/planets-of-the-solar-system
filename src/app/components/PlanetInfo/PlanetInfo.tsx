@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { PlanetInfo } from '../../types/planetInfo';
 import { Description } from './Description/Description';
-import { Tabs } from './Description/Tabs/Tabs';
+import { Tabs } from './Tabs/Tabs';
 import { Footer } from './Footer/Footer';
 
 import { Illustration } from './Illustration/Illustration';
@@ -37,6 +37,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     gap: 30px;
     padding-bottom: 50px;
+    overflow-x: hidden;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 90%;
@@ -66,15 +67,19 @@ const Body = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 50% 50%;
+        grid-template-columns: 40% 40%;
+        grid-template-rows: 60% 40%;
         grid-row-gap: 50px;
+        justify-content: center;
+        padding-bottom: 50px;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         height: 80%;
         display: grid;
-        grid-template-columns: 70% 30%;
+        grid-template-columns: 60% 35%;
         grid-row-gap: 10px;
+        justify-content: space-between;
+        padding-bottom: 0;
     }
 `;

@@ -11,8 +11,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
 
     body {
         font-family: ${({ theme }) => theme.fonts.primary};
-        height: 100vh;
-        width: 100vw;
         background-color: ${({ theme }) => theme.colors.black} ;
     }
 `;

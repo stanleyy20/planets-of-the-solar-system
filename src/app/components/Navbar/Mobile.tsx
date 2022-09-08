@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { PLANETS } from '../../data/planets';
+import { ArrowIcon } from '../../assets/images/arrow-icon';
 
 export const Mobile: React.FunctionComponent = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,7 +19,21 @@ export const Mobile: React.FunctionComponent = () => {
                     <Bars isOpen={isOpen} />
                 </Menu>
             </Wrapper>
-            <NavList isOpen={isOpen}></NavList>
+            <NavList isOpen={isOpen}>
+                {PLANETS.map((planet) => (
+                    <ListItem key={planet.color} onClick={handleToggle}>
+                        <StyledLink to={planet.name}>
+                            <Container>
+                                <PlanetIcon
+                                    style={{ backgroundColor: `${planet.color}` }}></PlanetIcon>
+                                {planet.name.toUpperCase()}
+                            </Container>
+
+                            {ArrowIcon}
+                        </StyledLink>
+                    </ListItem>
+                ))}
+            </NavList>
         </>
     );
 };
@@ -106,7 +123,10 @@ const NavList = styled.ul<BarsProps>`
     left: 0;
     top: 80px;
     z-index: 99;
-
+    padding: 20px;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
     transition: opacity 0.3s;
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
     pointer-events: ${({ isOpen }) => (isOpen ? 'all' : 'none')};
@@ -114,4 +134,32 @@ const NavList = styled.ul<BarsProps>`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: none;
     }
+`;
+
+const ListItem = styled.li`
+    list-style: none;
+    padding: 18px 0;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.grayDark};
+`;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const Container = styled.div`
+    display: flex;
+    gap: 20px;
+    align-items: center;
+`;
+
+const PlanetIcon = styled.div`
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
 `;

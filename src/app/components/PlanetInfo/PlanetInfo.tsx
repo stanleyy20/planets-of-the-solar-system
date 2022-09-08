@@ -40,6 +40,10 @@ const Wrapper = styled.section`
     padding-bottom: 50px;
     overflow-x: hidden;
 
+    @media screen and (min-width: 550px) {
+        padding: 0 100px;
+    }
+
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 85%;
         padding-bottom: 20px;

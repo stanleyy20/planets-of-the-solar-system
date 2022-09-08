@@ -1,0 +1,15 @@
+{
+  "short_name": "Planets",
+  "name": "Planets of the solar system",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "hsl(240, 17%, 26%)",
+  "background_color": "hsl(240, 67%, 8%)"
+}

@@ -35,7 +35,14 @@ export const Desktop: React.FunctionComponent = () => {
 
     return (
         <Wrapper>
-            <Title>THE PLANETS</Title>
+            <NavLink
+                style={{
+                    textDecoration: 'none',
+                    color: 'white',
+                }}
+                to='/'>
+                <Title>THE PLANETS</Title>
+            </NavLink>
             <Navigation>{Links}</Navigation>
         </Wrapper>
     );

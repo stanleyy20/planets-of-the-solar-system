@@ -21,4 +21,7 @@ const Header = styled.header`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         height: 100px;
     }
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        height: 80px;
+    }
 `;

@@ -38,7 +38,7 @@ const Information = styled.div`
     align-items: center;
     gap: 30px;
     width: 100%;
-    padding-top: 35px;
+    padding-top: 55px;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 100%;

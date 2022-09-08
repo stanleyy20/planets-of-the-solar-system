@@ -47,7 +47,6 @@ const Wrapper = styled.section`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 85%;
         padding-bottom: 20px;
-        padding-top: 50px;
         padding-left: 0;
         padding-right: 0;
         gap: 50px;
@@ -74,7 +73,6 @@ const Body = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: grid;
-
         grid-template-rows: 60% 40%;
         grid-row-gap: 50px;
         justify-content: center;

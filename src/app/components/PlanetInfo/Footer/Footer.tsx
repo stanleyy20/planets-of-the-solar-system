@@ -48,7 +48,7 @@ const Item = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         flex-direction: column;
         align-items: flex-start;
-        padding: 35px 25px;
+        padding: 25px 25px;
     }
 `;
 const Text = styled.p`

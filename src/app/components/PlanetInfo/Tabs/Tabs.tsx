@@ -57,11 +57,10 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
 };
 
 const Container = styled(motion.div)`
-    width: 120%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 20px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.grayDark};
     z-index: 50;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
@@ -89,7 +88,8 @@ const Tab = styled.button<TabProps>`
     flex-direction: row;
     outline: none;
     border: none;
-    color: ${({ theme }) => theme.colors.grayLight};
+    color: ${({ active }) =>
+        active ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.grayLight};
     padding: 15px 0;
     cursor: pointer;
     font-weight: 700;
@@ -108,21 +108,9 @@ const Tab = styled.button<TabProps>`
         transform: translateX(-50%);
         bottom: 0;
         height: 6px;
-        width: 0;
+        width: ${({ active }) => (active ? '100%' : '0')};
         box-shadow: inset 1px 72px 0px -30px ${({ color }) => color};
         transition: width 0.3s;
-    }
-
-    &:focus {
-        color: ${({ theme }) => theme.colors.white};
-    }
-
-    &:active::after {
-        width: 100%;
-    }
-
-    &:focus::after {
-        width: 100%;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
@@ -137,14 +125,6 @@ const Tab = styled.button<TabProps>`
         &:hover {
             background-color: ${({ active }) =>
                 active ? 'none' : ({ theme }) => theme.colors.grayDark};
-        }
-
-        &:active::after {
-            width: 0;
-        }
-
-        &:focus::after {
-            width: 0;
         }
     }
 

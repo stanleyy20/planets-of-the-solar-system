@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { PlanetInfo } from '../../types/planetInfo';
 import { Description } from './Description/Description';
@@ -6,22 +5,26 @@ import { Tabs } from './Tabs/Tabs';
 import { Footer } from './Footer/Footer';
 
 import { Illustration } from './Illustration/Illustration';
+import { useDataChange } from '../../hooks/useDataChange';
 
 type PlanetItemProps = {
     planet: PlanetInfo;
 };
 
 export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet }) => {
-    const [geo, setGeo] = useState<boolean>(false);
-    const [int, setInt] = useState<boolean>(false);
+    const { handleOnClick, animate, src, geo, content, activeButton } = useDataChange(planet);
 
     return (
         <ThemeProvider theme={{ primaryColor: planet.color }}>
             <Wrapper>
                 <Body>
-                    <Tabs setInit={setInt} setGeo={setGeo} planet={planet} />
-                    <Illustration int={int} geo={geo} planet={planet} />
-                    <Description int={int} geo={geo} planet={planet} />
+                    <Tabs
+                        handleChange={handleOnClick}
+                        planet={planet}
+                        activeButton={activeButton}
+                    />
+                    <Illustration src={src} animation={animate} geo={geo} planet={planet} />
+                    <Description planet={planet} animate={animate} info={content} />
                 </Body>
                 <Footer planet={planet} />
             </Wrapper>
@@ -30,16 +33,12 @@ export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet })
 };
 
 const Wrapper = styled.section`
-    padding-top: 0;
-    width: 100%;
     padding: 0 30px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding-bottom: 50px;
-    overflow-x: hidden;
-
     @media screen and (min-width: 550px) {
         padding: 0 100px;
     }
@@ -55,8 +54,8 @@ const Wrapper = styled.section`
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         gap: 150px;
         width: 85%;
-        min-height: 85vh;
         justify-content: space-between;
+        padding-top: 20px;
     }
 
     @media screen and (min-width: 1600px) {
@@ -65,26 +64,26 @@ const Wrapper = styled.section`
 `;
 
 const Body = styled.div`
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 25px;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: grid;
-        grid-template-rows: 60% 40%;
         grid-row-gap: 50px;
         justify-content: center;
-        padding-bottom: 50px;
+        height: 70vh;
+        grid-template-rows: 60% 30%;
+        grid-template-columns: 60% 40%;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
-        height: 80%;
         display: grid;
-        grid-template-columns: 60% 35%;
         grid-row-gap: 10px;
         justify-content: space-between;
         padding-bottom: 0;
+        height: 55vh;
     }
 `;

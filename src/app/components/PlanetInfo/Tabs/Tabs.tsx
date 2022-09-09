@@ -1,66 +1,38 @@
-import { useState } from 'react';
+import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
+import { ButtonsData } from '../../../data/tabsData';
 import { PlanetInfo } from '../../../types/planetInfo';
+import { TabsType } from '../../../types/tabs';
 
 type TabsProps = {
     planet: PlanetInfo;
-    setGeo: React.Dispatch<React.SetStateAction<boolean>>;
-    setInit: React.Dispatch<React.SetStateAction<boolean>>;
+    handleChange: (button: TabsType, event: SyntheticEvent) => void;
+    activeButton: string;
 };
 
-type button = {
-    id: string;
-    content: string;
-    active?: boolean;
-};
-
-const ButtonsData: Array<button> = [
-    {
-        id: '01',
-        content: 'OVERVIEW',
-        active: true,
-    },
-    {
-        id: '02',
-        content: 'INTERNAL STRUCTURE',
-    },
-    {
-        id: '03',
-        content: 'SURFACE GEOLOGY',
-    },
-];
-
-export const Tabs: React.FunctionComponent<TabsProps> = ({ planet, setGeo, setInit }) => {
-    const [activeButton, setActiveButton] = useState<boolean>(true);
-
-    const handleOnClick = (button: button) => {
-        setActiveButton(false);
-
-        if (button.id === '02') {
-            setInit(true);
-        } else {
-            setInit(false);
-        }
-
-        if (button.id === '03') {
-            setGeo(true);
-        } else {
-            setGeo(false);
-        }
-    };
-
+export const Tabs: React.FunctionComponent<TabsProps> = ({
+    planet,
+    handleChange,
+    activeButton,
+}) => {
     return (
         <Container>
-            {ButtonsData.map((button) => (
-                <Tab
-                    key={button.id}
-                    color={planet.color}
-                    active={button.active ? activeButton : false}
-                    onClick={() => handleOnClick(button)}>
-                    <Number>{button.id}</Number>
-                    {button.content}
-                </Tab>
-            ))}
+            {ButtonsData.map((button) => {
+                const active = activeButton === button.id;
+
+                return (
+                    <Tab
+                        key={button.id}
+                        color={planet.color}
+                        active={active}
+                        onClick={(event: SyntheticEvent) => {
+                            handleChange(button, event);
+                        }}>
+                        <Number>{button.id}</Number>
+                        {button.content}
+                    </Tab>
+                );
+            })}
         </Container>
     );
 };
@@ -82,6 +54,7 @@ const Container = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         grid-area: 2 / 2 / 3 / 3;
+        padding-top: 50px;
     }
 `;
 
@@ -143,11 +116,16 @@ const Tab = styled.button<TabProps>`
         color: ${({ theme }) => theme.colors.white};
 
         &:hover {
-            background-color: ${({ theme }) => theme.colors.grayDark};
+            background-color: ${({ active }) =>
+                active ? 'none' : ({ theme }) => theme.colors.grayDark};
         }
 
-        &:focus {
-            background-color: ${({ color }) => color};
+        &:active::after {
+            width: 0;
+        }
+
+        &:focus::after {
+            width: 0;
         }
     }
 

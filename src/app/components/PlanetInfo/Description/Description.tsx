@@ -1,26 +1,23 @@
 import styled from 'styled-components';
 import { LinkIcon } from '../../../assets/images/link-icon';
+
 import { PlanetInfo } from '../../../types/planetInfo';
 
 type DescriptionProps = {
     planet: PlanetInfo;
-
-    geo: boolean;
-    int: boolean;
+    info: string;
+    animate: boolean;
 };
 
-export const Description: React.FunctionComponent<DescriptionProps> = ({ planet, geo, int }) => {
-    const content =
-        !geo && !int
-            ? planet.overview.content
-            : geo
-            ? planet.geology.content
-            : planet.structure.content;
-
+export const Description: React.FunctionComponent<DescriptionProps> = ({
+    planet,
+    info,
+    animate,
+}) => {
     return (
         <Information>
             <Title>{planet.name}</Title>
-            <TextSecondary>{content}</TextSecondary>
+            <TextSecondary animate={animate}>{info}</TextSecondary>
             <Text>
                 Source:{' '}
                 <WikiLink href={planet.overview.source} target='_blank'>
@@ -38,7 +35,6 @@ const Information = styled.div`
     align-items: center;
     gap: 30px;
     width: 100%;
-    padding-top: 55px;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 100%;
@@ -66,13 +62,36 @@ const Text = styled.p`
     font-weight: bold;
 `;
 
-const TextSecondary = styled.p`
+type TextSecondaryProps = {
+    animate: boolean;
+};
+
+const TextSecondary = styled.p<TextSecondaryProps>`
     color: ${({ theme }) => theme.colors.white};
     text-align: center;
+    line-height: 20px;
+    animation: ${({ animate }) => (animate ? 'textAnimation' : '')} 2s ease-in-out;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         text-align: left;
         font-size: 14px;
+    }
+
+    @keyframes textAnimation {
+        0% {
+            line-height: 20px;
+            opacity: 1;
+        }
+
+        50% {
+            line-height: 30px;
+            opacity: 0;
+        }
+
+        100% {
+            line-height: 20px;
+            opacity: 1;
+        }
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {

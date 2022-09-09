@@ -3,35 +3,38 @@ import { PlanetInfo } from '../../../types/planetInfo';
 
 type IllustrationProps = {
     planet: PlanetInfo;
+    animation: boolean;
     geo: boolean;
-    int: boolean;
+    src: string;
 };
-export const Illustration: React.FunctionComponent<IllustrationProps> = ({ planet, geo, int }) => {
-    const src = !int ? planet.overview.image : planet.structure.image;
-
+export const Illustration: React.FunctionComponent<IllustrationProps> = ({
+    planet,
+    animation,
+    geo,
+    src,
+}) => {
     return (
         <ImgWrapper>
             <Img
                 src={src}
-                active={true}
                 desktopWidth={planet.desktopImgWidth}
                 tabletWidth={planet.tabletImgWidth}
-                mobileWidth={planet.mobileImgWidth}></Img>
-            <Span geo={geo} secondImg={planet.geology.geo}></Span>
+                mobileWidth={planet.mobileImgWidth}
+                animate={animation}
+                geo={geo}
+                secondImg={planet.geology.geo}></Img>
         </ImgWrapper>
     );
 };
 
-type SpanProps = {
-    secondImg: string;
-    geo: boolean;
-};
-
 type ImgProps = {
-    active: boolean;
     mobileWidth: string;
     tabletWidth: string;
     desktopWidth: string;
+    animate: boolean;
+    src: string;
+    secondImg: string;
+    geo: boolean;
 };
 
 const ImgWrapper = styled.div`
@@ -39,6 +42,8 @@ const ImgWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
+    padding-top: 50px;
 
     @media screen and (min-width: ${({ theme }) => theme.media.sm}) {
         grid-area: 1 / 1 / 2 / 3;
@@ -51,37 +56,45 @@ const ImgWrapper = styled.div`
     }
 `;
 
-const Span = styled.span<SpanProps>`
-    position: absolute;
+const Img = styled.div<ImgProps>`
+    position: relative;
+    width: ${({ mobileWidth }) => mobileWidth};
+    height: 100%;
+    background-image: url(${({ src }) => src});
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    animation: ${({ animate }) => (animate ? 'planetAnimation' : '')} 2s ease-in-out;
+    transition: background-image 2s;
 
-    &::before {
-        content: '';
+    &::after {
         position: absolute;
-        width: 250px;
-        height: 400px;
-        background-image: url(${({ secondImg }) => secondImg});
-        background-size: 30%;
+        content: '';
+        bottom: 0;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        background-image: url(${({ geo }) => (geo ? ({ secondImg }) => secondImg : '')});
+        background-size: 80%;
         background-position: center;
         background-repeat: no-repeat;
         transform: translateX(-50%);
-        bottom: -300px;
-        opacity: ${({ geo }) => (geo ? 1 : 0)};
+        transition: 1.5s background-image;
 
         @media screen and (min-width: ${({ theme }) => theme.media.md}) {
             background-size: 50%;
-            bottom: -350px;
+            width: 180px;
+            height: 180px;
+            bottom: -20%;
         }
 
         @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
-            background-size: 70%;
-            bottom: -450px;
+            bottom: -25%;
+            background-size: 80%;
+            width: 180px;
+            height: 180px;
         }
     }
-`;
-
-const Img = styled.img<ImgProps>`
-    width: ${({ mobileWidth }) => mobileWidth};
-    transform: scale(${({ active }) => (active ? 1 : 0)});
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: ${({ tabletWidth }) => tabletWidth};
@@ -89,5 +102,21 @@ const Img = styled.img<ImgProps>`
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         width: ${({ desktopWidth }) => desktopWidth};
+    }
+
+    @keyframes planetAnimation {
+        0% {
+            transform: scale(1) rotate(0);
+        }
+
+        50% {
+            transform: scale(0) rotate(180deg);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1) rotate(0);
+            opacity: 1;
+        }
     }
 `;

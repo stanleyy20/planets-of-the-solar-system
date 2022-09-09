@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { ButtonsData } from '../../../data/tabsData';
@@ -15,8 +16,26 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
     handleChange,
     activeButton,
 }) => {
+    const containerAnimation = {
+        hidden: {
+            opacity: 0,
+            x: 100,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: { delay: 1, duration: 1.5 },
+        },
+        exit: {
+            opacity: 0,
+            x: 100,
+            transition: { duration: 1 },
+        },
+    };
+
+    const { exit, hidden, visible } = containerAnimation;
     return (
-        <Container>
+        <Container initial={hidden} animate={visible} exit={exit}>
             {ButtonsData.map((button) => {
                 const active = activeButton === button.id;
 
@@ -37,7 +56,7 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
     );
 };
 
-const Container = styled.div`
+const Container = styled(motion.div)`
     width: 120%;
     display: flex;
     flex-direction: row;

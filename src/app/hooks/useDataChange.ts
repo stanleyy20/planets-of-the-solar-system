@@ -1,5 +1,4 @@
 import { SyntheticEvent, useState } from 'react';
-import { SyntheticExpression } from 'typescript';
 import { PlanetInfo } from '../types/planetInfo';
 import { TabsType } from '../types/tabs';
 

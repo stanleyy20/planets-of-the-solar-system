@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { LinkIcon } from '../../../assets/images/link-icon';
 
@@ -14,8 +15,26 @@ export const Description: React.FunctionComponent<DescriptionProps> = ({
     info,
     animate,
 }) => {
+    const containerAnimation = {
+        hidden: {
+            opacity: 0,
+            x: 100,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: { delay: 1, duration: 1.5 },
+        },
+        exit: {
+            opacity: 0,
+            x: 100,
+            transition: { duration: 1 },
+        },
+    };
+
+    const { exit, hidden, visible } = containerAnimation;
     return (
-        <Information>
+        <Information initial={hidden} animate={visible} exit={exit}>
             <Title>{planet.name}</Title>
             <TextSecondary animate={animate}>{info}</TextSecondary>
             <Text>
@@ -28,7 +47,7 @@ export const Description: React.FunctionComponent<DescriptionProps> = ({
     );
 };
 
-const Information = styled.div`
+const Information = styled(motion.div)`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,17 +98,17 @@ const TextSecondary = styled.p<TextSecondaryProps>`
 
     @keyframes textAnimation {
         0% {
-            line-height: 20px;
+            transform: scale(1);
             opacity: 1;
         }
 
         50% {
-            line-height: 30px;
+            transform: scale(1.2);
             opacity: 0;
         }
 
         100% {
-            line-height: 20px;
+            transform: scale(1);
             opacity: 1;
         }
     }

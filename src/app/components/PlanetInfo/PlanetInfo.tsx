@@ -7,6 +7,8 @@ import { Footer } from './Footer/Footer';
 import { Illustration } from './Illustration/Illustration';
 import { useDataChange } from '../../hooks/useDataChange';
 
+import { motion } from 'framer-motion';
+
 type PlanetItemProps = {
     planet: PlanetInfo;
 };
@@ -32,7 +34,7 @@ export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet })
     );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     padding: 0 30px;
     margin: 0 auto;
     display: flex;
@@ -42,6 +44,8 @@ const Wrapper = styled.section`
     @media screen and (min-width: 550px) {
         padding: 0 100px;
     }
+
+    transition: opacity 3s;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 85%;

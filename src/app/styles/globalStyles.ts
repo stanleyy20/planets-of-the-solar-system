@@ -12,6 +12,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
     body {
         font-family: ${({ theme }) => theme.fonts.primary};
         background-color: ${({ theme }) => theme.colors.black} ;
-        height: 100vh;
+        height: 101vh;
     }
 `;

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { PlanetInfo } from '../../../types/planetInfo';
 
@@ -5,9 +6,31 @@ type FooterProps = {
     planet: PlanetInfo;
 };
 
+const containerAnimation = {
+    hidden: {
+        opacity: 0,
+        scale: 0.9,
+        y: 50,
+    },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: { delay: 1, duration: 1.5 },
+    },
+    exit: {
+        opacity: 0,
+        scale: 0.9,
+        y: 50,
+        transition: { duration: 1 },
+    },
+};
+
+const { exit, hidden, visible } = containerAnimation;
+
 export const Footer: React.FunctionComponent<FooterProps> = ({ planet }) => {
     return (
-        <Container>
+        <Container initial={hidden} animate={visible} exit={exit}>
             {planet.properties.map((item) => (
                 <Item key={item.property}>
                     <Text>{item.text}</Text>
@@ -18,7 +41,7 @@ export const Footer: React.FunctionComponent<FooterProps> = ({ planet }) => {
     );
 };
 
-const Container = styled.footer`
+const Container = styled(motion.footer)`
     display: flex;
     justify-content: space-between;
     flex-direction: column;

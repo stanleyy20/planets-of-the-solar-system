@@ -13,7 +13,7 @@ type PlanetItemProps = {
     planet: PlanetInfo;
 };
 
-export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet }) => {
+export const Planet: React.FunctionComponent<PlanetItemProps> = ({ planet }) => {
     const { currentTab, geologyTab, isAnimated, planetImgSrc, planetInfo, handleOnClick } = useDataChange(planet);
 
     return (

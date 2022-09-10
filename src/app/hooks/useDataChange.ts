@@ -6,10 +6,11 @@ import { TAB_TYPE } from '../data/tabsData';
 export const useDataChange = (planet: PlanetInfo) => {
     const { GEOLOGY_TAB, OVERVIEW_TAB, STRUCTURE_TAB } = TAB_TYPE;
 
+    const [isAnimated, setIsAnimated] = useState<boolean>(false);
+
     const [structureTab, setStructureTab] = useState<boolean>(false);
     const [geologyTab, setGeologyTab] = useState<boolean>(false);
     const [currentTab, setCurrentTab] = useState<string>(OVERVIEW_TAB);
-    const [isAnimated, setIsAnimated] = useState<boolean>(false);
 
     const planetImgSrc = structureTab ? planet.structure.image : planet.overview.image;
 

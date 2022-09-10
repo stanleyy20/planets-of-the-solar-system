@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { PLANETS } from '../../data/planets';
 import { ArrowIcon } from '../../assets/images/arrow-icon';
@@ -14,7 +14,14 @@ export const Mobile: React.FunctionComponent = () => {
     return (
         <>
             <Wrapper>
-                <Text>THE PLANETS</Text>
+                <NavLink
+                    style={{
+                        textDecoration: 'none',
+                        color: 'white',
+                    }}
+                    to='/'>
+                    <Text>THE PLANETS</Text>
+                </NavLink>
                 <Menu aria-label='Menu toggle' aria-controls='nav-list' onClick={handleToggle}>
                     <Bars isOpen={isOpen} />
                 </Menu>
@@ -24,8 +31,7 @@ export const Mobile: React.FunctionComponent = () => {
                     <ListItem key={planet.color} onClick={handleToggle}>
                         <StyledLink to={planet.name}>
                             <Container>
-                                <PlanetIcon
-                                    style={{ backgroundColor: `${planet.color}` }}></PlanetIcon>
+                                <PlanetIcon style={{ backgroundColor: `${planet.color}` }}></PlanetIcon>
                                 {planet.name.toUpperCase()}
                             </Container>
 
@@ -122,7 +128,7 @@ const NavList = styled.ul<BarsProps>`
     background-color: ${({ theme }) => theme.colors.black};
     left: 0;
     top: 80px;
-    z-index: 99;
+    z-index: 102;
     padding: 20px;
     padding-top: 0;
     display: flex;

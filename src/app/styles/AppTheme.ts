@@ -3,7 +3,7 @@ import { theme as appTheme } from '../types/theme';
 export const theme: appTheme = {
     colors: {
         white: 'hsl(0, 0%, 100%)',
-        whiteAlpha50: 'hsla(0, 0%, 100%, 0.5)',
+        whiteAlpha50: 'hsla(0, 0%, 100%, 0.2)',
         whiteAlpha75: 'hsla(0, 0%, 100%, 0.75)',
         black: 'hsl(240, 67%, 8%)',
         grayDark: 'hsl(240, 17%, 26%)',

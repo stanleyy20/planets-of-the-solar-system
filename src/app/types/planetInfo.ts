@@ -39,4 +39,8 @@ export type PlanetInfo = {
             property: string;
         }
     ];
+    radius: string;
+    orbitTime: number;
+    planetSize: string;
+    zIndex: number;
 };

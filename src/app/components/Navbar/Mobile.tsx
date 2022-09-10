@@ -137,9 +137,7 @@ const NavList = styled.ul<BarsProps>`
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
     pointer-events: ${({ isOpen }) => (isOpen ? 'all' : 'none')};
 
-    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
-        display: none;
-    }
+   
 `;
 
 const ListItem = styled.li`

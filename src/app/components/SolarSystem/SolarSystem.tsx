@@ -6,7 +6,7 @@ export const SolarSystem: React.FunctionComponent = () => {
             style={{
                 color: 'white',
                 textAlign: 'center',
-                padding: '55px',
+                paddingTop: '55px',
             }}>
             <Orbits />
         </div>

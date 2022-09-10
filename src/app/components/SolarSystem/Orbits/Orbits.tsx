@@ -39,8 +39,8 @@ const Container = styled.div`
 `;
 
 type OrbitProps = {
-    width: string;
-    height: string;
+    width: number;
+    height: number;
     zIndex: number;
     orbitTime: number;
     color: string;
@@ -51,14 +51,18 @@ const Orbit = styled.div<OrbitProps>`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    height: ${({ height }) => height};
-    width: ${({ width }) => width};
+    height: ${({ height }) => height * 0.5}px;
+    width: ${({ width }) => width * 0.5}px;
     border: 1px solid ${({ theme }) => theme.colors.whiteAlpha50};
     border-radius: 50%;
     animation: orbitPlanet ${({ orbitTime }) => orbitTime}s linear infinite;
     cursor: pointer;
     z-index: ${({ zIndex }) => zIndex};
-    transform: scale(1);
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        height: ${({ height }) => height}px;
+        width: ${({ width }) => width}px;
+    }
 
     &:hover {
         border: 1px solid ${({ color }) => color};
@@ -79,23 +83,31 @@ const SunImg = styled.img`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 70px;
+    width: 35px;
     box-shadow: 0px 0px 20px 2px #fc9736;
     border-radius: 50%;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        width: 70px;
+    }
 `;
 
 type PlanetImgProps = {
-    size: string;
+    size: number;
 };
 
 const PlanetImg = styled.img<PlanetImgProps>`
     position: absolute;
-    width: ${({ size }) => size};
+    width: ${({ size }) => size * 0.7}px;
     top: 0;
     transform: translate(-50%, -50%) rotate(0);
 
     &:hover {
         transform: translate(-50%, -50%) rotate(0) scale(1.3);
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        width: ${({ size }) => size}px;
     }
 `;
 

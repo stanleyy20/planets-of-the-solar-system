@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/planets-of-the-solar-system/static/js/main.e839fd66.js",
+    "main.js": "/planets-of-the-solar-system/static/js/main.a3ca2194.js",
     "static/media/planet-mercury-geology.png": "/planets-of-the-solar-system/static/media/planet-mercury-geology.aa6732c318454e3fc480.png",
     "static/media/planet-venus-geology.png": "/planets-of-the-solar-system/static/media/planet-venus-geology.484f9dacbeb3b555ffba.png",
     "static/media/planet-mars-geology.png": "/planets-of-the-solar-system/static/media/planet-mars-geology.d3ffce8e1e9b9bc5df60.png",
@@ -27,9 +27,9 @@
     "static/media/planet-mercury-internal.svg": "/planets-of-the-solar-system/static/media/planet-mercury-internal.d1be143201898fac437968baae616e6b.svg",
     "static/media/planet-mercury.svg": "/planets-of-the-solar-system/static/media/planet-mercury.1fce205c50f4657418d4562ca24b008a.svg",
     "index.html": "/planets-of-the-solar-system/index.html",
-    "main.e839fd66.js.map": "/planets-of-the-solar-system/static/js/main.e839fd66.js.map"
+    "main.a3ca2194.js.map": "/planets-of-the-solar-system/static/js/main.a3ca2194.js.map"
   },
   "entrypoints": [
-    "static/js/main.e839fd66.js"
+    "static/js/main.a3ca2194.js"
   ]
 }

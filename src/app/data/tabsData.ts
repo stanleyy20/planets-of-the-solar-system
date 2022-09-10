@@ -1,16 +1,22 @@
-import { TabsType } from '../types/tabs';
+import { Tabs } from '../types/tabs';
 
-export const ButtonsData: Array<TabsType> = [
+export const TAB_DATA: Array<Tabs> = [
     {
-        id: '01',
+        type: '01',
         content: 'OVERVIEW',
     },
     {
-        id: '02',
+        type: '02',
         content: 'INTERNAL STRUCTURE',
     },
     {
-        id: '03',
+        type: '03',
         content: 'SURFACE GEOLOGY',
     },
 ];
+
+export const TAB_TYPE = {
+    OVERVIEW_TAB: '01',
+    STRUCTURE_TAB: '02',
+    GEOLOGY_TAB: '03',
+};

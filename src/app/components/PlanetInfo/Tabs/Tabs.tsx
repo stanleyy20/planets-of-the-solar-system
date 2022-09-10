@@ -1,21 +1,18 @@
 import { motion } from 'framer-motion';
-import { SyntheticEvent } from 'react';
+
 import styled from 'styled-components';
-import { ButtonsData } from '../../../data/tabsData';
+
+import { TAB_DATA } from '../../../data/tabsData';
 import { PlanetInfo } from '../../../types/planetInfo';
-import { TabsType } from '../../../types/tabs';
+import { Tabs as TabTypes } from '../../../types/tabs';
 
 type TabsProps = {
     planet: PlanetInfo;
-    handleChange: (button: TabsType, event: SyntheticEvent) => void;
-    activeButton: string;
+    handleChange: (tab: TabTypes) => void;
+    currentTab: string;
 };
 
-export const Tabs: React.FunctionComponent<TabsProps> = ({
-    planet,
-    handleChange,
-    activeButton,
-}) => {
+export const Tabs: React.FunctionComponent<TabsProps> = ({ planet, handleChange, currentTab }) => {
     const containerAnimation = {
         hidden: {
             opacity: 0,
@@ -36,19 +33,19 @@ export const Tabs: React.FunctionComponent<TabsProps> = ({
     const { exit, hidden, visible } = containerAnimation;
     return (
         <Container initial={hidden} animate={visible} exit={exit}>
-            {ButtonsData.map((button) => {
-                const active = activeButton === button.id;
+            {TAB_DATA.map((tab) => {
+                const current = currentTab === tab.type;
 
                 return (
                     <Tab
-                        key={button.id}
+                        key={tab.type}
                         color={planet.color}
-                        active={active}
-                        onClick={(event: SyntheticEvent) => {
-                            handleChange(button, event);
+                        current={current}
+                        onClick={() => {
+                            handleChange(tab);
                         }}>
-                        <Number>{button.id}</Number>
-                        {button.content}
+                        <Number>{tab.type}</Number>
+                        {tab.content}
                     </Tab>
                 );
             })}
@@ -78,7 +75,7 @@ const Container = styled(motion.div)`
 
 type TabProps = {
     color: string;
-    active: boolean;
+    current: boolean;
 };
 
 const Tab = styled.button<TabProps>`
@@ -88,8 +85,8 @@ const Tab = styled.button<TabProps>`
     flex-direction: row;
     outline: none;
     border: none;
-    color: ${({ active }) =>
-        active ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.grayLight};
+    color: ${({ current }) =>
+        current ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.grayLight};
     padding: 15px 0;
     cursor: pointer;
     font-weight: 700;
@@ -108,23 +105,28 @@ const Tab = styled.button<TabProps>`
         transform: translateX(-50%);
         bottom: 0;
         height: 6px;
-        width: ${({ active }) => (active ? '100%' : '0')};
+        width: ${({ current }) => (current ? '100%' : '0')};
         box-shadow: inset 1px 72px 0px -30px ${({ color }) => color};
         transition: width 0.3s;
+
+        @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+            width: 0;
+        }
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
-        background-color: ${({ active }) => (active ? ({ color }) => color : 'transparent')};
+        background-color: ${({ current }) => (current ? ({ color }) => color : 'transparent')};
         width: 100%;
         font-size: 12px;
         border: 1px solid ${({ theme }) => theme.colors.grayDark};
         padding-left: 30px;
         justify-content: left;
         color: ${({ theme }) => theme.colors.white};
+        transition: background-color 1s;
 
         &:hover {
-            background-color: ${({ active }) =>
-                active ? 'none' : ({ theme }) => theme.colors.grayDark};
+            background-color: ${({ current }) =>
+                current ? 'none' : ({ theme }) => theme.colors.grayDark};
         }
     }
 

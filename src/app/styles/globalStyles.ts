@@ -13,5 +13,27 @@ export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
         font-family: ${({ theme }) => theme.fonts.primary};
         background-color: ${({ theme }) => theme.colors.black} ;
         height: 101vh;
+
+       
+            ::-webkit-scrollbar {
+            width: 10px;        
+            }
+
+
+            ::-webkit-scrollbar-track {
+            background: transparent;
+            }
+
+
+            ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0, 1);
+            border-radius: 20px;
+    
+            }
+
+
+            ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0, 1)
+            }
     }
 `;

@@ -1,4 +1,4 @@
-export type TabsType = {
-    id: string;
+export type Tabs = {
+    type: string;
     content: string;
 };

@@ -4,15 +4,15 @@ import { PlanetInfo } from '../../../types/planetInfo';
 
 type IllustrationProps = {
     planet: PlanetInfo;
-    animation: boolean;
-    geo: boolean;
-    src: string;
+    isAnimated: boolean;
+    planetImgSrc: string;
+    geologyTab: boolean;
 };
 export const Illustration: React.FunctionComponent<IllustrationProps> = ({
     planet,
-    animation,
-    geo,
-    src,
+    isAnimated,
+    planetImgSrc,
+    geologyTab,
 }) => {
     const containerAnimation = {
         hidden: {
@@ -42,13 +42,13 @@ export const Illustration: React.FunctionComponent<IllustrationProps> = ({
     return (
         <ImgWrapper initial={hidden} animate={visible} exit={exit}>
             <Img
-                src={src}
+                imgSrc={planetImgSrc}
                 desktopWidth={planet.desktopImgWidth}
                 tabletWidth={planet.tabletImgWidth}
                 mobileWidth={planet.mobileImgWidth}
-                animate={animation}
-                geo={geo}
-                secondImg={planet.geology.geo}></Img>
+                isAnimated={isAnimated}
+                extraImgVisible={geologyTab}
+                extraImgSrc={planet.geology.geo}></Img>
         </ImgWrapper>
     );
 };
@@ -57,10 +57,10 @@ type ImgProps = {
     mobileWidth: string;
     tabletWidth: string;
     desktopWidth: string;
-    animate: boolean;
-    src: string;
-    secondImg: string;
-    geo: boolean;
+    isAnimated: boolean;
+    imgSrc: string;
+    extraImgSrc: string;
+    extraImgVisible: boolean;
 };
 
 const ImgWrapper = styled(motion.div)`
@@ -86,12 +86,11 @@ const Img = styled.div<ImgProps>`
     position: relative;
     width: ${({ mobileWidth }) => mobileWidth};
     height: 100%;
-    background-image: url(${({ src }) => src});
+    background-image: url(${({ imgSrc }) => imgSrc});
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
-    animation: ${({ animate }) => (animate ? 'planetAnimation' : '')} 2s ease-in-out;
-    transition: background-image 2s;
+    animation: ${({ isAnimated }) => (isAnimated ? 'planetAnimation' : '')} 2s ease-in-out;
 
     &::after {
         position: absolute;
@@ -100,12 +99,11 @@ const Img = styled.div<ImgProps>`
         left: 50%;
         width: 80px;
         height: 80px;
-        background-image: url(${({ geo }) => (geo ? ({ secondImg }) => secondImg : '')});
+        background-image: url(${({ extraImgVisible }) => (extraImgVisible ? ({ extraImgSrc }) => extraImgSrc : '')});
         background-size: 80%;
         background-position: center;
         background-repeat: no-repeat;
         transform: translateX(-50%);
-        transition: 1.5s background-image;
 
         @media screen and (min-width: ${({ theme }) => theme.media.md}) {
             background-size: 50%;

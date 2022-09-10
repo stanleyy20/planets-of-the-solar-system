@@ -6,14 +6,14 @@ import { PlanetInfo } from '../../../types/planetInfo';
 
 type DescriptionProps = {
     planet: PlanetInfo;
-    info: string;
-    animate: boolean;
+    isAnimated: boolean;
+    planetInfo: string;
 };
 
 export const Description: React.FunctionComponent<DescriptionProps> = ({
     planet,
-    info,
-    animate,
+    isAnimated,
+    planetInfo,
 }) => {
     const containerAnimation = {
         hidden: {
@@ -36,7 +36,7 @@ export const Description: React.FunctionComponent<DescriptionProps> = ({
     return (
         <Information initial={hidden} animate={visible} exit={exit}>
             <Title>{planet.name}</Title>
-            <TextSecondary animate={animate}>{info}</TextSecondary>
+            <TextPrimary isAnimated={isAnimated}>{planetInfo}</TextPrimary>
             <Text>
                 Source:{' '}
                 <WikiLink href={planet.overview.source} target='_blank'>
@@ -57,8 +57,10 @@ const Information = styled(motion.div)`
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         width: 100%;
+        height: 250px;
         align-items: flex-start;
         grid-area: 2 / 1 / 3 / 2;
+        padding-right: 5px;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
@@ -82,14 +84,14 @@ const Text = styled.p`
 `;
 
 type TextSecondaryProps = {
-    animate: boolean;
+    isAnimated: boolean;
 };
 
-const TextSecondary = styled.p<TextSecondaryProps>`
+const TextPrimary = styled.p<TextSecondaryProps>`
     color: ${({ theme }) => theme.colors.white};
     text-align: center;
     line-height: 20px;
-    animation: ${({ animate }) => (animate ? 'textAnimation' : '')} 2s ease-in-out;
+    animation: ${({ isAnimated }) => (isAnimated ? 'textAnimation' : '')} 2s ease-out;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         text-align: left;
@@ -104,6 +106,7 @@ const TextSecondary = styled.p<TextSecondaryProps>`
 
         50% {
             transform: scale(1.2);
+
             opacity: 0;
         }
 

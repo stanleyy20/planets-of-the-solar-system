@@ -14,19 +14,21 @@ type PlanetItemProps = {
 };
 
 export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet }) => {
-    const { handleOnClick, animate, src, geo, content, activeButton } = useDataChange(planet);
+    const { currentTab, geologyTab, isAnimated, planetImgSrc, planetInfo, handleOnClick } =
+        useDataChange(planet);
 
     return (
         <ThemeProvider theme={{ primaryColor: planet.color }}>
             <Wrapper>
                 <Body>
-                    <Tabs
-                        handleChange={handleOnClick}
+                    <Tabs handleChange={handleOnClick} planet={planet} currentTab={currentTab} />
+                    <Illustration
+                        planetImgSrc={planetImgSrc}
+                        isAnimated={isAnimated}
+                        geologyTab={geologyTab}
                         planet={planet}
-                        activeButton={activeButton}
                     />
-                    <Illustration src={src} animation={animate} geo={geo} planet={planet} />
-                    <Description planet={planet} animate={animate} info={content} />
+                    <Description planetInfo={planetInfo} planet={planet} isAnimated={isAnimated} />
                 </Body>
                 <Footer planet={planet} />
             </Wrapper>

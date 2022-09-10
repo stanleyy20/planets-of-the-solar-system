@@ -1,70 +1,73 @@
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import { PlanetInfo } from '../types/planetInfo';
-import { TabsType } from '../types/tabs';
+import { Tabs } from '../types/tabs';
+import { TAB_TYPE } from '../data/tabsData';
 
 export const useDataChange = (planet: PlanetInfo) => {
-    const [geo, setGeo] = useState<boolean>(false);
-    const [int, setInt] = useState<boolean>(false);
-    const [animate, setAnimate] = useState<boolean>(false);
-    const [activeButton, setActiveButton] = useState<string>('01');
+    const { GEOLOGY_TAB, OVERVIEW_TAB, STRUCTURE_TAB } = TAB_TYPE;
 
-    const src = !int ? planet.overview.image : planet.structure.image;
+    const [structureTab, setStructureTab] = useState<boolean>(false);
+    const [geologyTab, setGeologyTab] = useState<boolean>(false);
+    const [currentTab, setCurrentTab] = useState<string>(OVERVIEW_TAB);
+    const [isAnimated, setIsAnimated] = useState<boolean>(false);
 
-    const content =
-        !geo && !int
+    const planetImgSrc = structureTab ? planet.structure.image : planet.overview.image;
+
+    const planetInfo =
+        !geologyTab && !structureTab
             ? planet.overview.content
-            : geo
+            : geologyTab
             ? planet.geology.content
             : planet.structure.content;
 
-    const changePlanetInfo = () => {
-        setTimeout(() => {
-            console.log('hello');
-        }, 1000);
+    const changeTab = (tab: Tabs) => {
+        if (tab.type === OVERVIEW_TAB) {
+            setTimeout(() => {
+                setStructureTab(false);
+                setGeologyTab(false);
+            }, 1000);
+
+            setCurrentTab(tab.type);
+        }
+
+        if (tab.type === STRUCTURE_TAB) {
+            setTimeout(() => {
+                setStructureTab(true);
+                setGeologyTab(false);
+            }, 1000);
+
+            setCurrentTab(tab.type);
+        }
+
+        if (tab.type === GEOLOGY_TAB) {
+            setTimeout(() => {
+                setStructureTab(false);
+                setGeologyTab(true);
+            }, 1000);
+
+            setCurrentTab(tab.type);
+        }
     };
 
-    const changeImg = (button: TabsType, event: SyntheticEvent) => {
-        if (activeButton === button.id) return;
+    const handleOnClick = (tab: Tabs) => {
+        if (tab.type === currentTab) return;
 
-        if (button.id === '01') {
-            setActiveButton(button.id);
-        }
-
-        if (button.id === '02') {
-            setInt(true);
-            setActiveButton(button.id);
-        } else {
-            setInt(false);
-        }
-
-        if (button.id === '03') {
-            setGeo(true);
-            setActiveButton(button.id);
-        } else {
-            setGeo(false);
-        }
-    };
-
-    const handleOnClick = (button: TabsType, event: SyntheticEvent) => {
-        if (button.id === activeButton) return;
-
-        setAnimate(true);
-
-        changePlanetInfo();
+        setIsAnimated(true);
 
         setTimeout(() => {
-            setAnimate(false);
+            setIsAnimated(false);
         }, 2000);
 
-        changeImg(button, event);
+        changeTab(tab);
     };
 
     return {
-        src,
-        geo,
-        animate,
-        content,
+        planetImgSrc,
+        planetInfo,
+        isAnimated,
         handleOnClick,
-        activeButton,
+        currentTab,
+        geologyTab,
+        structureTab,
     };
 };

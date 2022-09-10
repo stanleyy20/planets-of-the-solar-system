@@ -6,10 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Build Setup
 
-npm install
-
-npm start
-
+`npm install`
 
 In the project directory, you can run:
 
@@ -19,6 +16,6 @@ In the project directory, you can run:
 
 `npm run build`
 
-`npm run eject`
+`npm run deploy`
 
 

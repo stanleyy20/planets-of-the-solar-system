@@ -14,8 +14,7 @@ type PlanetItemProps = {
 };
 
 export const PlanetItem: React.FunctionComponent<PlanetItemProps> = ({ planet }) => {
-    const { currentTab, geologyTab, isAnimated, planetImgSrc, planetInfo, handleOnClick } =
-        useDataChange(planet);
+    const { currentTab, geologyTab, isAnimated, planetImgSrc, planetInfo, handleOnClick } = useDataChange(planet);
 
     return (
         <ThemeProvider theme={{ primaryColor: planet.color }}>
@@ -54,7 +53,6 @@ const Wrapper = styled(motion.section)`
         padding-bottom: 20px;
         padding-left: 0;
         padding-right: 0;
-        gap: 50px;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
@@ -70,7 +68,7 @@ const Wrapper = styled(motion.section)`
 `;
 
 const Body = styled.div`
-    height: 75vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -78,7 +76,6 @@ const Body = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         display: grid;
-        grid-row-gap: 50px;
         justify-content: center;
         height: 70vh;
         grid-template-rows: 60% 30%;
@@ -86,10 +83,9 @@ const Body = styled.div`
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
-        display: grid;
-        grid-row-gap: 10px;
         justify-content: space-between;
         padding-bottom: 0;
         height: 55vh;
+        grid-template-rows: 60% 40%;
     }
 `;

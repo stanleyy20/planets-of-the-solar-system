@@ -85,17 +85,26 @@ const ImgWrapper = styled(motion.div)`
 const Img = styled.div<ImgProps>`
     position: relative;
     width: ${({ mobileWidth }) => mobileWidth};
-    height: 100%;
+    height: 150%;
     background-image: url(${({ imgSrc }) => imgSrc});
     background-repeat: no-repeat;
-    background-size: 70%;
+    background-size: 100%;
     background-position: center;
     animation: ${({ isAnimated }) => (isAnimated ? 'planetAnimation' : '')} 2s ease-in-out;
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        width: ${({ tabletWidth }) => tabletWidth};
+        background-size: 80%;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
+        width: ${({ desktopWidth }) => desktopWidth};
+    }
 
     &::after {
         position: absolute;
         content: '';
-        bottom: 0;
+        bottom: 15%;
         left: 50%;
         width: 80px;
         height: 80px;
@@ -106,26 +115,17 @@ const Img = styled.div<ImgProps>`
         transform: translateX(-50%);
 
         @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+            bottom: 0;
             background-size: 50%;
             width: 180px;
             height: 180px;
-            bottom: -20%;
         }
 
         @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
-            bottom: -25%;
             background-size: 80%;
             width: 180px;
             height: 180px;
         }
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
-        width: ${({ tabletWidth }) => tabletWidth};
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
-        width: ${({ desktopWidth }) => desktopWidth};
     }
 
     @keyframes planetAnimation {

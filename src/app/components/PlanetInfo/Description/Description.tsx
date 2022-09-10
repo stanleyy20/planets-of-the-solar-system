@@ -10,11 +10,7 @@ type DescriptionProps = {
     planetInfo: string;
 };
 
-export const Description: React.FunctionComponent<DescriptionProps> = ({
-    planet,
-    isAnimated,
-    planetInfo,
-}) => {
+export const Description: React.FunctionComponent<DescriptionProps> = ({ planet, isAnimated, planetInfo }) => {
     const containerAnimation = {
         hidden: {
             opacity: 0,
@@ -40,7 +36,7 @@ export const Description: React.FunctionComponent<DescriptionProps> = ({
             <Text>
                 Source:{' '}
                 <WikiLink href={planet.overview.source} target='_blank'>
-                    Wikipedia {LinkIcon}
+                    Wikipedia <span>{LinkIcon}</span>
                 </WikiLink>
             </Text>
         </Information>
@@ -60,7 +56,7 @@ const Information = styled(motion.div)`
         height: 250px;
         align-items: flex-start;
         grid-area: 2 / 1 / 3 / 2;
-        padding-right: 5px;
+        padding-right: 15px;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
@@ -79,6 +75,7 @@ const Title = styled.h2`
 `;
 
 const Text = styled.p`
+    display: block;
     color: ${({ theme }) => theme.colors.grayLight};
     font-weight: bold;
 `;
@@ -123,4 +120,15 @@ const TextPrimary = styled.p<TextSecondaryProps>`
 
 const WikiLink = styled.a`
     color: ${({ theme }) => theme.colors.grayLight};
+
+    @media screen and (min-width: ${({ theme }) => theme.media.md}) {
+        span {
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        &:hover span {
+            opacity: 1;
+        }
+    }
 `;

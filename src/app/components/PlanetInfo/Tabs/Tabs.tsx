@@ -69,7 +69,7 @@ const Container = styled(motion.div)`
 
     @media screen and (min-width: ${({ theme }) => theme.media.xl}) {
         grid-area: 2 / 2 / 3 / 3;
-        padding-top: 50px;
+        padding-top: 25px;
     }
 `;
 
@@ -85,8 +85,7 @@ const Tab = styled.button<TabProps>`
     flex-direction: row;
     outline: none;
     border: none;
-    color: ${({ current }) =>
-        current ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.grayLight};
+    color: ${({ current }) => (current ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.grayLight)};
     padding: 15px 0;
     cursor: pointer;
     font-weight: 700;
@@ -125,8 +124,7 @@ const Tab = styled.button<TabProps>`
         transition: background-color 1s;
 
         &:hover {
-            background-color: ${({ current }) =>
-                current ? 'none' : ({ theme }) => theme.colors.grayDark};
+            background-color: ${({ current }) => (current ? 'none' : ({ theme }) => theme.colors.grayDark)};
         }
     }
 

@@ -13,6 +13,7 @@ export const Wrapper: React.FunctionComponent<WrapperProps> = ({ children }) => 
 };
 
 const Container = styled.div`
+    overflow-x: hidden;
     &::after {
         content: '';
         position: absolute;

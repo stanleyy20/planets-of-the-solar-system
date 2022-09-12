@@ -63,8 +63,8 @@ export const SolarSystem: React.FunctionComponent<SolarSystemProps> = ({ activeP
 
 const Container = styled(motion.div)`
     position: relative;
-
-    height: 80vh;
+    overflow-x: hidden;
+    height: 85vh;
     margin: 0 auto;
 
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {

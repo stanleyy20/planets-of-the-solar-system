@@ -24,10 +24,7 @@ export const Desktop: React.FunctionComponent = () => {
                 : null;
 
         return (
-            <StyledLink
-                primary_color={primaryColor ? primaryColor : 'white'}
-                to={planet.name}
-                key={planet.name}>
+            <StyledLink primary_color={primaryColor ? primaryColor : 'white'} to={planet.name} key={planet.name}>
                 {planet.name.toUpperCase()}
             </StyledLink>
         );
@@ -41,7 +38,7 @@ export const Desktop: React.FunctionComponent = () => {
                     color: 'white',
                 }}
                 to='/'>
-                <Title>THE PLANETS</Title>
+                <Title>SOLAR SYSTEM</Title>
             </NavLink>
             <Navigation>{Links}</Navigation>
         </Wrapper>

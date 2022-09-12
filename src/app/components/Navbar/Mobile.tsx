@@ -20,7 +20,7 @@ export const Mobile: React.FunctionComponent = () => {
                         color: 'white',
                     }}
                     to='/'>
-                    <Text>THE PLANETS</Text>
+                    <Text>SOLAR SYSTEM</Text>
                 </NavLink>
                 <Menu aria-label='Menu toggle' aria-controls='nav-list' onClick={handleToggle}>
                     <Bars isOpen={isOpen} />
@@ -136,8 +136,6 @@ const NavList = styled.ul<BarsProps>`
     transition: opacity 0.3s;
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
     pointer-events: ${({ isOpen }) => (isOpen ? 'all' : 'none')};
-
-   
 `;
 
 const ListItem = styled.li`

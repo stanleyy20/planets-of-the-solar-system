@@ -2,29 +2,21 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { PLANETS } from '../../data/planets';
 
-export const Desktop: React.FunctionComponent = () => {
-    const Links = PLANETS.map((planet) => {
-        const primaryColor =
-            planet.name === 'Earth'
-                ? 'hsl(238,99%,66%)'
-                : null || planet.name === 'Jupiter'
-                ? 'hsl(27,75%,70%)'
-                : null || planet.name === 'Mars'
-                ? 'hsl(12,100%,64%)'
-                : null || planet.name === 'Mercury'
-                ? 'hsl(196,83%,93%)'
-                : null || planet.name === 'Neptune'
-                ? 'hsl(222,95%,63%)'
-                : null || planet.name === 'Saturn'
-                ? 'hsl(17, 73%, 46%)'
-                : null || planet.name === 'Uranus'
-                ? 'hsl(168,82%,67%)'
-                : null || planet.name === 'Venus'
-                ? 'hsl(39,88%,73%)'
-                : null;
+type DesktopProps = {
+    setActivePlanet: React.Dispatch<React.SetStateAction<string>>;
+};
 
+export const Desktop: React.FunctionComponent<DesktopProps> = ({ setActivePlanet }) => {
+    const Links = PLANETS.map((planet) => {
         return (
-            <StyledLink primary_color={primaryColor ? primaryColor : 'white'} to={planet.name} key={planet.name}>
+            <StyledLink
+                primary_color={planet.color}
+                to={planet.name}
+                onMouseOver={() => setActivePlanet(planet.name)}
+                onMouseLeave={() => setActivePlanet('/')}
+                onFocus={() => setActivePlanet(planet.name)}
+                onBlur={() => setActivePlanet('/')}
+                key={planet.name}>
                 {planet.name.toUpperCase()}
             </StyledLink>
         );
@@ -32,14 +24,9 @@ export const Desktop: React.FunctionComponent = () => {
 
     return (
         <Wrapper>
-            <NavLink
-                style={{
-                    textDecoration: 'none',
-                    color: 'white',
-                }}
-                to='/'>
+            <BackLink to='/'>
                 <Title>SOLAR SYSTEM</Title>
-            </NavLink>
+            </BackLink>
             <Navigation>{Links}</Navigation>
         </Wrapper>
     );
@@ -126,4 +113,9 @@ const Title = styled.h2`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         text-align: center;
     }
+`;
+
+const BackLink = styled(NavLink)`
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.white};
 `;

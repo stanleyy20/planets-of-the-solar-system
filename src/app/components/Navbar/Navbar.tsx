@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import { Desktop } from './Desktop';
 import { Mobile } from './Mobile';
 
-export const Navbar: React.FunctionComponent = () => {
+type NavbarProps = {
+    setActivePlanet: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const Navbar: React.FunctionComponent<NavbarProps> = ({ setActivePlanet }) => {
     return (
         <Header>
             <Mobile />
-            <Desktop />
+            <Desktop setActivePlanet={setActivePlanet} />
         </Header>
     );
 };

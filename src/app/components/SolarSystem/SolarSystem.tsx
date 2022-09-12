@@ -6,7 +6,11 @@ import { asteroidsBackground } from '../../data/asteroidsBackground';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-export const SolarSystem: React.FunctionComponent = () => {
+type SolarSystemProps = {
+    activePlanet: string;
+};
+
+export const SolarSystem: React.FunctionComponent<SolarSystemProps> = ({ activePlanet }) => {
     const { Sun } = Images;
 
     const containerAnimation = {
@@ -34,6 +38,8 @@ export const SolarSystem: React.FunctionComponent = () => {
     return (
         <Container initial={hidden} animate={visible} exit={exit}>
             {PLANETS.map((planet) => {
+                const onHover = activePlanet === planet.name;
+
                 return (
                     <NavLink key={planet.name} to={planet.name}>
                         <Orbit
@@ -43,7 +49,8 @@ export const SolarSystem: React.FunctionComponent = () => {
                             orbitTime={planet.orbitTime}
                             zIndex={planet.zIndex}
                             size={planet.planetSize}
-                            planetSrc={planet.overview.image}></Orbit>
+                            planetSrc={planet.overview.image}
+                            onHover={onHover}></Orbit>
                     </NavLink>
                 );
             })}
@@ -73,6 +80,7 @@ type OrbitProps = {
     color: string;
     size: number;
     planetSrc: string;
+    onHover: boolean;
 };
 
 const Orbit = styled.div<OrbitProps>`
@@ -91,6 +99,8 @@ const Orbit = styled.div<OrbitProps>`
     @media screen and (min-width: ${({ theme }) => theme.media.md}) {
         height: ${({ height }) => height}px;
         width: ${({ width }) => width}px;
+        border: 1px solid
+            ${({ onHover }) => (onHover ? ({ color }) => color : ({ theme }) => theme.colors.whiteAlpha50)};
     }
 
     &:hover {
@@ -112,6 +122,7 @@ const Orbit = styled.div<OrbitProps>`
         background-image: url(${({ planetSrc }) => planetSrc});
         background-repeat: no-repeat;
         background-size: 100%;
+        transform: translate(-50%, -50%) ${({ onHover }) => (onHover ? 'scale(1.4)' : 'scale(1.0)')};
         transition: transform 0.6s;
 
         @media screen and (min-width: ${({ theme }) => theme.media.md}) {

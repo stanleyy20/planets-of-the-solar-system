@@ -4,14 +4,16 @@ import { Planet } from '../Planet/Planet';
 import { SolarSystem } from '../SolarSystem/SolarSystem';
 import { AnimatePresence } from 'framer-motion';
 
-// 'framer-motion/dist/frame-motion';
+type AnimatedRoutesProps = {
+    activePlanet: string;
+};
 
-export const AnimatedRoutes = () => {
+export const AnimatedRoutes: React.FunctionComponent<AnimatedRoutesProps> = ({ activePlanet }) => {
     const location = useLocation();
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-                <Route path='/' element={<SolarSystem />} />
+                <Route path='/' element={<SolarSystem activePlanet={activePlanet} />} />
                 {PLANETS.map((planet) => {
                     return <Route path={planet.name} element={<Planet planet={planet} />} key={planet.color} />;
                 })}

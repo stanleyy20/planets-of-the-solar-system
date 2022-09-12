@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme as appTheme } from '../types/theme';
+import { starsBackground } from './starsBackground';
 
 export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
     
@@ -36,5 +37,16 @@ export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
             ::-webkit-scrollbar-thumb:hover {
             background: rgba(0,0,0, 1)
             }
+
+            &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 2px;
+        top: -2px;
+        background: white;
+        box-shadow: ${starsBackground};
+        border-radius: 100px;
+    }
     }
 `;

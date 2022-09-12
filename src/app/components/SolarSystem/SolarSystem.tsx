@@ -101,6 +101,8 @@ const Orbit = styled.div<OrbitProps>`
         width: ${({ width }) => width}px;
         border: 1px solid
             ${({ onHover }) => (onHover ? ({ color }) => color : ({ theme }) => theme.colors.whiteAlpha50)};
+
+        transition: border 0.6s;
     }
 
     &:hover {

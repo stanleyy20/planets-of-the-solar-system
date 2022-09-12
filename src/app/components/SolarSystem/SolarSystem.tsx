@@ -16,7 +16,7 @@ export const SolarSystem: React.FunctionComponent<SolarSystemProps> = ({ activeP
     const containerAnimation = {
         hidden: {
             opacity: 0,
-            scale: 6,
+            scale: 0,
             rotate: '-40deg',
         },
         visible: {

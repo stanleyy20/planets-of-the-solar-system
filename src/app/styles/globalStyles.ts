@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: appTheme }>`
         font-family: ${({ theme }) => theme.fonts.primary};
         background-color: ${({ theme }) => theme.colors.black} ;
         height: 101vh;
-         overflow-x: hidden;
+        overflow-x: hidden;
 
        
             ::-webkit-scrollbar {
